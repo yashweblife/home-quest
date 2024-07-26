@@ -1,15 +1,15 @@
-import { AuthContext } from '@/context/auth';
+import List from '@/components/List/List';
+import { todos } from '@/utils';
 import { useRouter } from 'expo-router';
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Appbar, Button } from 'react-native-paper';
+import { Appbar } from 'react-native-paper';
 type HomeSAcreenProps = {
   setIsLoggedIn: (value: boolean) => void
 }
 
 export default function HomeScreen({setIsLoggedIn}: HomeSAcreenProps) {
   const router = useRouter();
-  const {logout} = useContext(AuthContext);
   return (
   <>
     <Appbar.Header>
@@ -18,8 +18,8 @@ export default function HomeScreen({setIsLoggedIn}: HomeSAcreenProps) {
         router.push('(settings)');
       }} />
     </Appbar.Header>
-    <View style={{flex: 1, padding: 24, gap: 12, justifyContent: 'center'}}>
-      <Button onPress={() => logout()}>Logout</Button>
+    <View style={{flex: 1, padding:10, marginTop: 10}}>
+      <List name="Todos" list={todos} />
     </View>
   </>
   );
